@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <!--HEADER SECTION-->
     <header class="w-full flex justify-center ">
         <nav class="w-11/12 flex gap-3 rounded-2xl flex-col md:flex-row items-center justify-between text-cyan-50 my-3 p-3 md:rounded-full"
             id="nav-section">
@@ -27,6 +28,7 @@
         </nav>
     </header>
 
+    <!--MAIN SECTION-->
     <main class="w-full flex justify-center">
         <section id="main-section"
             class=" my-3 bg-slate-800 w-11/12 min-h-screen py-4 rounded-3xl flex justify-between flex-wrap" >
@@ -38,6 +40,7 @@
         </section>
     </main>
 
+    <!--FOOTER SECTION-->
     <footer class="w-full flex justify-center">
         <div class="w-11/12 flex gap-3 rounded-2xl flex-row items-center justify-center text-cyan-50 my-3 p-3 md:rounded- bg-cover"
             id="footer-section">
@@ -53,6 +56,7 @@
 
 
     <script>
+        
         const maindiv = document.querySelector('#maindiv');
         const callback = document.querySelector('#callback-btn');
         const infodiv = document.createElement('div');
@@ -62,13 +66,16 @@
 
         async function fetchinfo() {
 
-            if(alreadymessagepresent){
+            if(alreadymessagepresent){ //THIS GETS TRUE ONLY IF FETCH CONTENT IS ALREADY PRESENT ON WEBSITE
                 console.log('code running');
-                document.querySelectorAll('.content').forEach(e => e.remove());
+                document.querySelectorAll('.content').forEach(e => e.remove()); //if fetch data is already available in div element it will first remove the previous data before updating the new data
             }
 
             infodiv.innerHTML = 'Loading ....';
             maindiv.appendChild(infodiv);
+
+
+            //HERE THE MAIN THING START FOR ERROR HANDLING AND DATA HANDLING
             try{
                 const response = await fetch('https://dummyjson.com/posts');
                 const result = await response.json();
@@ -83,9 +90,9 @@
                 })
             
             }
-            catch(error){
+            catch(error){ //ERROR WILL BE DISPLAYED AFTER 5 SECONDS
                 setTimeout(() => {
-                    infodiv.innerHTML = `Operation Timeout --- ${error}`;
+                    infodiv.innerHTML = `Operation Timeout --- ${error}`; 
                 }, 5000);
             }
         }
