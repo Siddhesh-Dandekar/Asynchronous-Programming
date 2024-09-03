@@ -87,7 +87,11 @@
             .then(arr => setTimeout(()=> {
                 infodiv.remove();
                 arr.map(x => displayinfo(x.title));//its going to display all the title inside posts array
-            },5000));
+            },5000)).catch((err)=> {
+                setTimeout(()=>{
+                    infodiv.innerHTML = 'Unable to fetch the Data';
+                },5000)
+            });
         }
 
     </script>
